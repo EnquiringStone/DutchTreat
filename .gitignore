@@ -8,7 +8,8 @@
 
 
 # Project specific files
-DutchTreat/wwwroot/dist/
+DutchTreat/wwwroot/dist/*.js
+DutchTreat/wwwroot/dist/*.css
 
 
 # User-specific files
