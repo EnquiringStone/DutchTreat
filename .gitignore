@@ -10,6 +10,12 @@
 # Project specific files
 DutchTreat/wwwroot/dist/*.js
 DutchTreat/wwwroot/dist/*.css
+DutchTreat/wwwroot/dist/*.LICENSE
+DutchTreat/wwwroot/dist/*.eot
+DutchTreat/wwwroot/dist/*.svg
+DutchTreat/wwwroot/dist/*.woff2
+DutchTreat/wwwroot/dist/*.ttf
+DutchTreat/wwwroot/dist/*.woff
 
 
 # User-specific files
