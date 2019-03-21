@@ -27,13 +27,41 @@ namespace DutchTreat.Data
             context.Add(model);
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
             try
             {
-                return context.Orders
+                if (includeItems)
+                {
+                    return context.Orders
                     .Include(o => o.Items)
                     .ThenInclude(i => i.Product)
+                    .ToList();
+                }
+                return context.Orders
+                    .ToList();
+            }
+            catch (Exception exception)
+            {
+                logger.LogError($"Failed to get all orders: {exception}");
+                return null;
+            }
+        }
+
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
+        {
+            try
+            {
+                if (includeItems)
+                {
+                    return context.Orders
+                    .Where(o => o.User.UserName == username)
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .ToList();
+                }
+                return context.Orders
+                    .Where(o => o.User.UserName == username)
                     .ToList();
             }
             catch (Exception exception)
@@ -59,14 +87,14 @@ namespace DutchTreat.Data
             
         }
 
-        public Order GetOrderById(string id)
+        public Order GetOrderById(string username, string id)
         {
             try
             {
                 return context.Orders
                     .Include(o => o.Items)
                     .ThenInclude(i => i.Product)
-                    .Where(o => o.Id == Guid.Parse(id))
+                    .Where(o => o.Id == Guid.Parse(id) && o.User.UserName == username)
                     .SingleOrDefault();
             }
             catch (Exception exception)
