@@ -58,7 +58,7 @@ namespace DutchTreat.Data
                 var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
                 context.Products.AddRange(products);
 
-                var order = context.Orders.Where(o => o.Id == Guid.Parse("4313ebfd-6948-4759-ad11-5e40337a7f94")).FirstOrDefault();
+                var order = context.Orders.Where(o => o.Id == Guid.Parse("165f5463-b311-43aa-b0d3-3aa5c6bf448d")).FirstOrDefault();
                 if (order != null)
                 {
                     order.User = user;
